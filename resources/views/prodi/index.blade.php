@@ -15,7 +15,7 @@
         <td>{{ $prodi->nama_prodi }}</td>
         <td>{{ $prodi->singkatan }}</td>
         <td>{{ $prodi->kaprodi }}</td>
-        <td>{{ $prodi->fakultas->nama_fakultas ?? '-' }}</td>
+        <td>{{ $prodi->fakultas->nama ?? '-' }}</td>
     </tr>
     @endforeach
 
