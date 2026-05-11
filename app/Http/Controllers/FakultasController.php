@@ -14,7 +14,6 @@ class FakultasController extends Controller
     {
         // akses model fakultas
         $result = Fakultas::all(); // select * from fakultas
-        
         // kirim data fakultas ke view
         //return view('fakultas.index')->with('fakultas', $result);
         //atau compact
