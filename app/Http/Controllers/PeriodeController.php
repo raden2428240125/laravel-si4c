@@ -12,12 +12,9 @@ class PeriodeController extends Controller
      */
     public function index()
     {
-        // akses model fakultas
+        // akses model Periode 
         $result = Periode::all(); // select * from periode
-        
-        // kirim data fakultas ke view
-        //return view('fakultas.index')->with('fakultas', $result);
-        //atau compact
+        // dd($result);
         return view('periode.index', compact('result'));
     }
 
@@ -34,14 +31,14 @@ class PeriodeController extends Controller
      */
     public function store(Request $request)
     {
-        //validasi data yang dikirim dari form
-        $input = $request->validate([
-            'nama_periode' => 'required|unique:periode',
-            'tahun' => 'required|unique:periode',
+        // validasi data
+        $request->validate([
+            'tahun_akademik' => 'required',
+            'kode_smt' => 'required',
         ]);
 
         // simpan data ke database
-        Periode::create($input);
+        Periode::create($request->all());
 
         // redirect ke halaman index dengan pesan sukses
         return redirect()->route('periode.index');

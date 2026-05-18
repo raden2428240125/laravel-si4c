@@ -12,11 +12,8 @@ class FakultasController extends Controller
      */
     public function index()
     {
-        // akses model fakultas
         $result = Fakultas::all(); // select * from fakultas
-        // kirim data fakultas ke view
-        //return view('fakultas.index')->with('fakultas', $result);
-        //atau compact
+        // dd($result);
         return view('fakultas.index', compact('result'));
     }
 
@@ -33,17 +30,17 @@ class FakultasController extends Controller
      */
     public function store(Request $request)
     {
-        //validasi data yang dikirim dari form
+        // validasi data
         $input = $request->validate([
             'nama_fakultas' => 'required|unique:fakultas',
-            'singkatan' => 'required|unique:fakultas',
-            'dekan' => 'required',
+            'singkatan' => 'required',
+            'dekan' => 'required'
         ]);
 
-        // simpan data ke database
+        // simpan data ke tabel fakultas
         Fakultas::create($input);
 
-        // redirect ke halaman index dengan pesan sukses
+        // redirect ke halaman index fakultas
         return redirect()->route('fakultas.index');
     }
 
