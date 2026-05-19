@@ -73,6 +73,10 @@ class PeriodeController extends Controller
      */
     public function destroy(Periode $periode)
     {
-        //
+        $periode = Periode::find($periode);
+        //dd($periode);
+        $periode->delete(); // delete from periode where id = $periode
+        return redirect()->route('periode.index')
+        ->with('success', 'Data berhasil dihapus'); // redirect ke halaman index periode
     }
 }

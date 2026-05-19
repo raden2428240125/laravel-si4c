@@ -75,6 +75,10 @@ class ProdiController extends Controller
      */
     public function destroy(Prodi $prodi)
     {
-        //
+        $prodi = Prodi::find($prodi);
+        //dd($prodi);
+        $prodi->delete(); // delete from prodis where id = $prodi
+        return redirect()->route('prodi.index')
+        ->with('success', 'Data berhasil dihapus'); // redirect ke halaman index prodi
     }
 }
