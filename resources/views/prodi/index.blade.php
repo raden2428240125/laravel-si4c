@@ -18,20 +18,20 @@
         <th>Fakultas</th>
     </tr>
 
-    @foreach($prodis as $key => $prodi)
+    @foreach($result as $item)
     <tr>
-        <td>{{ $key + 1 }}</td>
-        <td>{{ $prodi->nama_prodi }}</td>
-        <td>{{ $prodi->singkatan }}</td>
-        <td>{{ $prodi->kaprodi }}</td>
-        <td>{{ $prodi->fakultas->nama ?? '-' }}</td>
+        <td>{{ $loop->iteration }}</td>
+        <td>{{ $item->nama_prodi }}</td>
+        <td>{{ $item->singkatan }}</td>
+        <td>{{ $item->kaprodi }}</td>
+        <td>{{ $item->fakultas->nama ?? '-' }}</td>
             <td>
-                <a href="{{ route('prodi.edit', $prodi->id) }}" class="btn btn-xs btn-warning btn-rounded">Edit</a>
-                <form method="POST" action="{{ route('prodi.destroy', $prodi->id) }}" style="display:inline-block;">
+                <a href="{{ route('prodi.edit', $item->id) }}" class="btn btn-xs btn-warning btn-rounded">Edit</a>
+                <form method="POST" action="{{ route('prodi.destroy', $item->id) }}" style="display:inline-block;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-xs btn-danger btn-rounded show_confirm" data-toggle="tooltip"
-                        title='Delete' data-nama='{{ $prodi->nama_prodi }}'>Hapus</button>
+                        title='Delete' data-nama='{{ $item->nama_prodi }}'>Hapus</button>
                 </form>
     </tr>
     @endforeach

@@ -57,9 +57,11 @@ class ProdiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Prodi $prodi)
+    public function edit($prodi)
     {
-        //
+        $prodi = Prodi::find($prodi);
+        $fakultas = Fakultas::all(); //untuk list dropdown fakultas
+        return view('prodi.edit', compact('prodi', 'fakultas'));
     }
 
     /**

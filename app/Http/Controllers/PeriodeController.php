@@ -34,7 +34,7 @@ class PeriodeController extends Controller
         // validasi data
         $request->validate([
             'tahun_akademik' => 'required',
-            'kode_smt' => 'required',
+            'semster' => 'required',
         ]);
 
         // simpan data ke database
@@ -55,9 +55,11 @@ class PeriodeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Periode $periode)
+    public function edit($periode)
     {
-        //
+        $periode = Periode::find($periode);
+        return view('periode.edit', compact('periode'));
+
     }
 
     /**
@@ -71,7 +73,7 @@ class PeriodeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Periode $periode)
+    public function destroy($periode)
     {
         $periode = Periode::find($periode);
         //dd($periode);
