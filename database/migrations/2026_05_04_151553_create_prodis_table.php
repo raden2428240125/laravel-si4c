@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_prodi');
             $table->string('singkatan', 2);
             $table->char('kaprodi', 30);
-            $table->char('fakultas_id', 30)->contrained('fakultas', 'id')->onDelete('cascade');
+            $table->char('fakultas_id', 30)->constrained('fakultas')->onDelete('cascade');
             $table->timestamps();
         });
     }

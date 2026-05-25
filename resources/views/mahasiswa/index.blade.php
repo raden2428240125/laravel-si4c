@@ -18,20 +18,26 @@
             <th>Aksi</th>
         </tr>
 
-        @foreach ($request as $item)
+        @foreach ($mahasiswa as $key => $mhs)
             <tr>
-                <td>{{ $item->npm }}</td>
-                <td>{{ $item->nama }}</td>
-                <td>{{ $item->prodi->nama }}</td>
-                <td><img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}" width="100"></td>
+                <td>{{ $mhs->npm }}</td>
+                <td>{{ $mhs->nama }}</td>
+                <td>{{ $mhs->prodi->nama_prodi ?? '-' }}</td>
                 <td>
-                    <a href="{{ route('mahasiswa.edit', $item->id) }}" class="btn btn-xs btn-warning btn-rounded">Edit</a>
-                    <form method="POST" action="{{ route('mahasiswa.destroy', $item->id) }}" class="d-inline">
+                    @if ($mhs->foto)
+                        <img src="{{ asset('storage/' . $mhs->foto) }}" alt="Foto Mahasiswa" width="100">
+                    @else
+                        <span class="text-muted">Tidak ada foto</span>
+                    @endif
+                </td>
+                <td>
+                    <form method="POST" action="{{ route('mahasiswa.destroy', $mhs->id) }}">
                         @csrf
-                        <input name="_method" type="hidden" value="DELETE">
+                        <input name= "_method" type="hidden" value="DELETE">
                         <button type="submit" class="btn btn-xs btn-danger btn-rounded show_confirm" data-toggle="tooltip"
-                            title='Delete' data-nama='{{ $item->nama }}'>Hapus</button>
+                            title='Delete' data-nama='{{ $mhs->nama }}'>Hapus</button>
                     </form>
+                </td>
             </tr>
         @endforeach
 

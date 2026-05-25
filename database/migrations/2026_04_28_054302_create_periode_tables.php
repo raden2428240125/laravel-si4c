@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('tahun_akademik', 9);
             $table->char('semster', 1);
             $table->timestamps();
+            //
         });
     }
 

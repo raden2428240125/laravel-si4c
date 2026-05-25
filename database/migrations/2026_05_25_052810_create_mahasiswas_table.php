@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('nama', 50);
             $table->foreignId('prodi_id')->constrained('prodis')->onDelete('cascade');
             $table->string('foto', 100)->nullable();
-            $table->foreign('prodi_id')->references('id')->on('prodis')->
             $table->timestamps();
         });
     }
