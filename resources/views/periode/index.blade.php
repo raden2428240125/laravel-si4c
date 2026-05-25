@@ -20,7 +20,7 @@
                 <td>{{ $item->tahun_akademik }}</td>
                 <td>{{ $item->semster }}</td>
                 <td>
-                    <form method="POST" action="{{ route('periode.destroy', $item->id) }}">
+                    <form method="POST" action="{{ route('periode.destroy', $item->id) }}" class="d-inline">
                         @csrf
                         <input name="_method" type="hidden" value="DELETE">
                         <button type="submit" class="btn btn-xs btn-danger btn-rounded show_confirm" data-toggle="tooltip"

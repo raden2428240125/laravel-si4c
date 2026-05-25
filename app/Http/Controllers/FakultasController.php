@@ -69,15 +69,25 @@ class FakultasController extends Controller
      */
     public function update(Request $request, Fakultas $fakultas)
     {
-        //
+        //dd($fakultas);
+         // validasi data
+         $input = $request->validate([
+            'nama' => 'required|unique:fakultas,nama,' . $fakultas->id,
+            'singkatan' => 'required',
+            'dekan' => 'required'
+        ]);
+
+        // update data ke tabel fakultas
+        $fakultas->update($input); // update fakultas set nama = $input['nama'], singkatan = $input['singkatan'], dekan = $input['dekan'] where id = $fakultas->id
+        return redirect()->route('fakultas.index') ->with('success', 'Data berhasil diupdate'); // redirect ke halaman index fakultas dengan pesan sukses
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($fakultas)
+    public function destroy(Fakultas $fakultas)
     {
-        $fakultas = Fakultas::find($fakultas);
+        //$fakultas = Fakultas::find($fakultas);
         //dd($fakultas);
         $fakultas->delete(); // delete from fakultas where id = $fakultas
         return redirect()->route('fakultas.index') 

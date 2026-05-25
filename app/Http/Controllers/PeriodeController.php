@@ -57,6 +57,7 @@ class PeriodeController extends Controller
      */
     public function edit($periode)
     {
+        //dd($periode);
         $periode = Periode::find($periode);
         return view('periode.edit', compact('periode'));
 
@@ -67,15 +68,23 @@ class PeriodeController extends Controller
      */
     public function update(Request $request, Periode $periode)
     {
-        //
+        //dd($periode);
+        // validasi data
+        $input = $request->validate([
+            'tahun_akademik' => 'required',
+            'semster' => 'required',
+        ]);
+        // update data ke tabel periode
+        $periode->update($input);
+        return redirect()->route('periode.index') ->with('success', 'Data berhasil diupdate'); // redirect ke halaman index periode dengan pesan sukses
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($periode)
+    public function destroy(Periode $periode)
     {
-        $periode = Periode::find($periode);
+        //$periode = Periode::find($periode);
         //dd($periode);
         $periode->delete(); // delete from periode where id = $periode
         return redirect()->route('periode.index')

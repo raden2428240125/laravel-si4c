@@ -9,6 +9,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/fakultas', FakultasController::class);
-Route::resource('/periode', PeriodeController::class);
-Route::resource('/prodi', ProdiController::class);
+Route::resource('/fakultas', FakultasController::class)->parameters
+(['fakultas' => 'fakultas']);
+Route::resource('/periode', PeriodeController::class)->parameters
+(['periode' => 'periode']);
+Route::resource('/prodi', ProdiController::class)->parameters
+(['prodi' => 'prodi']);
+Route::resource('/mahasiswa', MahasiswaController::class)->parameters
+(['mahasiswa' => 'mahasiswa']);
