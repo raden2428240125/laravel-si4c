@@ -312,7 +312,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('fakultas.index') }}" class="nav-link">
-                                <i class="nav-icon bi bi-bank"></i>
+                                <i class="nav-icon bi bi-building"></i>
                                 <p>Fakultas</p>
                             </a>
                         </li>

@@ -1,23 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        // DB
-        $jumlahMahasiswa = DB::select('SELECT p.nama_prodi, count(*) as jumlah
-        FROM laravelsi4c.mahasiswas m 
-        join laravelsi4c.prodis p
-        on m.prodi_id = p.id
-        GROUP BY p.nama_prodi');
-        return view('dashboard.index', compact('jumlahMahasiswa'));
-    }
+  public function index()
+  {
+     $prodiData = collect(DB::select('
+            SELECT nama_prodi, COUNT(*) as TotalMahasiswa 
+            FROM mahasiswas
+            LEFT JOIN prodis ON prodi_id = prodis.id
+            GROUP BY nama_prodi
+        '));
+         $angkatanData = collect(DB::select('
+            SELECT LEFT(npm, 2) as angkatan, COUNT(*) as total
+            FROM mahasiswas
+            GROUP BY LEFT(npm, 2)
+        '));
+        return view('dashboard', compact('prodiData', 'angkatanData'));
+  }
 }
